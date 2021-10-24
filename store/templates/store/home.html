@@ -5,26 +5,25 @@
     <h2>home</h2>
 
     <div class="row">
-        {% for i in list %}
+        {% for product in products %}
         <div class="col-md-4">
             <div class="card mb-4" style="width: 330px;">
-                  <img src="{% static 'store/images/product.png' %}" class="card-img-top" alt="product image">
+                  <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">{{product.name}}</h5>
                   </div>
                   <div class="card-body">
-                    <a href="#" class="btn btn-outline-secondary">Add to cart</a>
+                    <a href="#" class="btn btn-outline-secondary update-cart">Add to cart</a>
                     <a href="#" class="btn btn-outline-success">View</a>
-                    <p class="card-price float-right">$238</p>
+                    <p class="card-price float-right">${{product.price}}</p>
                   </div>
             </div>
         </div>
         {% endfor %}
     </div>
 
-
-
-
-
-
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'store/js/cart.js' %}"></script>
+{% endblock js %}

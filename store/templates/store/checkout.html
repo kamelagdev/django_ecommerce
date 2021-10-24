@@ -44,26 +44,33 @@
                         <h3 class="mb-3">Order Summary</h3>
                     </div>
 
-                    <div class="col-md-12">
-                        <div class="row table-td border-top m-0">
-                            <div class="col-3 pl-0">
-                                <img class="product-img-size" src="{% static 'store/images/product.png' %}" alt="">
+                    {% for item in items %}
+                        <div class="col-md-12">
+                            <div class="row table-td border-top m-0">
+                                <div class="col-3 pl-0">
+                                    <img class="product-img-size" src="{{ item.product.image.url }}" alt="product img">
+                                </div>
+                                <div class="col-3">{{item.product.name}}</div>
+                                <div class="col">${{item.product.price}}</div>
+                                <div class="col">
+                                    <p>x {{item.quantity}}</p>
+                                </div>
                             </div>
-                            <div class="col-3">Mark</div>
-                            <div class="col">$20</div>
-                            <div class="col">
-                                <p>x 3</p>
-                            </div>
+
                         </div>
-                        <hr class="mt-0">
-                    </div>
+                    {% endfor %}
 
                     <div class="col-md-12 ">
-                        <h5>Items: 2</h5>
-                        <h5>Total: $40</h5>
+                        <hr class="mt-0">
+                        <h5>Items: {{ order_quantity }}</h5>
+                        <h5>Total: ${{ order_total }}</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'store/js/checkout.js' %}"></script>
+{% endblock js %}

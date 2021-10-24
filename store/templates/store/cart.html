@@ -9,8 +9,8 @@
                 <a class="btn btn-outline-secondary " href="{% url 'home' %}">&#8592; Continue shopping</a>
                 <hr>
                 <div class="row  d-flex align-items-center m-0">
-                    <div class="col-md-4"><strong>Total:</strong></div>
-                    <div class="col-md-4"><strong>Quantity:</strong></div>
+                    <div class="col-md-4"><strong>Total: ${{ order_total }}</strong></div>
+                    <div class="col-md-4"><strong>Quantity: {{ order_quantity }}</strong></div>
                     <div class="col-md-4 d-flex justify-content-center">
                         <a class="btn btn-outline-success" href="{% url 'checkout' %}">checkout</a>
                     </div>
@@ -28,34 +28,28 @@
                     <div class="col">Total</div>
                 </div>
 
-                <div class="row table-td border-top m-0">
-                    <div class="col-3"><img class="product-img-size" src="{% static 'store/images/product.png' %}" alt=""></div>
-                    <div class="col-3">Mark</div>
-                    <div class="col">$20</div>
+                {% for item in items %}
+                    <div class="row table-td border-top m-0">
+                    <div class="col-3"><img class="product-img-size" src="{{item.product.image.url}}" alt=""></div>
+                    <div class="col-3">{{item.product.name}}</div>
+                    <div class="col">${{ item.product.price }}</div>
                     <div class="col media">
-                        <p>3</p>
+                        <p>{{ item.quantity }}</p>
                         <div class="p-0 ml-2">
                             <img class="arrow-img mb-2" src="{% static 'store/images/arrow-up.png' %}" alt="add product">
                             <img class="arrow-img" src="{% static 'store/images/arrow-down.png' %}" alt="remove product">
                         </div>
                     </div>
-                    <div class="col">$60</div>
+                    <div class="col">${{item.item_total}}</div>
                 </div>
-                <div class="row table-td border-top m-0">
-                    <div class="col-3"><img class="product-img-size" src="{% static 'store/images/product.png' %}" alt=""></div>
-                    <div class="col-3">Mark</div>
-                    <div class="col">$20</div>
-                    <div class="col media">
-                        <p>3</p>
-                        <div class="p-0 ml-2">
-                            <img class="arrow-img mb-2" src="{% static 'store/images/arrow-up.png' %}" alt="add product">
-                            <img class="arrow-img" src="{% static 'store/images/arrow-down.png' %}" alt="remove product">
-                        </div>
-                    </div>
-                    <div class="col">$60</div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
 
     </div>
 {% endblock content %}
+
+{% block js %}
+    <script src="{% static 'store/js/cart.js' %}"></script>
+{% endblock js %}
