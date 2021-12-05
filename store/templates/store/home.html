@@ -6,14 +6,14 @@
 
     <div class="row">
         {% for product in products %}
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
             <div class="card mb-4" style="width: 330px;">
                   <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
                   <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                   </div>
                   <div class="card-body">
-                    <a href="#" class="btn btn-outline-secondary update-cart">Add to cart</a>
+                    <a  data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary update-cart">Add to cart</a>
                     <a href="#" class="btn btn-outline-success">View</a>
                     <p class="card-price float-right">${{product.price}}</p>
                   </div>

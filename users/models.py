@@ -10,3 +10,6 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name='customer', blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.__str__()

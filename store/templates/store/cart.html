@@ -9,8 +9,8 @@
                 <a class="btn btn-outline-secondary " href="{% url 'home' %}">&#8592; Continue shopping</a>
                 <hr>
                 <div class="row  d-flex align-items-center m-0">
-                    <div class="col-md-4"><strong>Total: ${{ order_total }}</strong></div>
-                    <div class="col-md-4"><strong>Quantity: {{ order_quantity }}</strong></div>
+                    <div class="col-md-4"><strong>Total: ${{ order.order_total }}</strong></div>
+                    <div class="col-md-4"><strong>Quantity: {{ order.order_quantity }}</strong></div>
                     <div class="col-md-4 d-flex justify-content-center">
                         <a class="btn btn-outline-success" href="{% url 'checkout' %}">checkout</a>
                     </div>
@@ -36,8 +36,8 @@
                     <div class="col media">
                         <p>{{ item.quantity }}</p>
                         <div class="p-0 ml-2">
-                            <img class="arrow-img mb-2" src="{% static 'store/images/arrow-up.png' %}" alt="add product">
-                            <img class="arrow-img" src="{% static 'store/images/arrow-down.png' %}" alt="remove product">
+                            <img data-product="{{ item.product.id }}" data-action="add" class="arrow-img mb-2 update-cart" src="{% static 'store/images/arrow-up.png' %}" alt="add product">
+                            <img data-product="{{ item.product.id }}" data-action="remove" class="arrow-img update-cart" src="{% static 'store/images/arrow-down.png' %}" alt="remove product">
                         </div>
                     </div>
                     <div class="col">${{item.item_total}}</div>
